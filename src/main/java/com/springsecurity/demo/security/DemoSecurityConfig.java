@@ -49,8 +49,7 @@ public class DemoSecurityConfig {
 
                 );
 
-        http.httpBasic(Customizer.withDefaults());
-
+        http.httpBasic(Customizer.withDefaults());g
         //disable csrf
         http.csrf(csrf->csrf.disable());
 
