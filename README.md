@@ -27,7 +27,7 @@ Each implementation is available in a separate branch:
 
 * `feat/InMemory-storage` → Spring Security using in-memory users
 * `feat/jdbc-authentication` → Authentication using Spring Security default JDBC tables
-* `feat/spring-security-jdbc-custom` → Authentication using custom database tables
+* `feat/spring-security-jdbc-custom-table` → Authentication using custom database tables
 
 Switch branches depending on the implementation you want to explore.
 

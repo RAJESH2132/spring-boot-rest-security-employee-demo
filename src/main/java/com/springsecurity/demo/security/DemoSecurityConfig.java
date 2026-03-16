@@ -43,7 +43,19 @@ public class DemoSecurityConfig {
     //add support for JDBC .. nor more hardcoded users
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource){
-        return new JdbcUserDetailsManager((dataSource));
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+
+        // define query to retrieve a user by username
+        jdbcUserDetailsManager.setUsersByUsernameQuery(
+                "select user_id, pw, active from members where user_id=?"
+        );
+
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
+                "select user_id, role from roles where user_id=?"
+        );
+        // define query to retrieve the authorities/roles by username
+
+        return jdbcUserDetailsManager;
     }
 
     @Bean
@@ -59,7 +71,7 @@ public class DemoSecurityConfig {
 
                 );
 
-        http.httpBasic(Customizer.withDefaults());g
+        http.httpBasic(Customizer.withDefaults());
         //disable csrf
         http.csrf(csrf->csrf.disable());
 
